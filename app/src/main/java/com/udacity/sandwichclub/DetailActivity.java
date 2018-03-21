@@ -13,15 +13,29 @@ import com.udacity.sandwichclub.utils.JsonUtils;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
 
+    @BindView(R.id.also_known_tv)
+    TextView alsoKnownTv;
+    @BindView(R.id.ingredients_tv)
+    TextView ingredientsTv;
+    @BindView(R.id.origin_tv)
+    TextView originTv;
+    @BindView(R.id.description_tv)
+    TextView descriptionTv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        ButterKnife.bind(this);
 
         ImageView ingredientsIv = findViewById(R.id.image_iv);
 
@@ -60,10 +74,6 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populateUI(Sandwich sandwich) {
-        TextView alsoKnownTv = findViewById(R.id.also_known_tv);
-        TextView ingredientsTv = findViewById(R.id.ingredients_tv);
-        TextView originTv = findViewById(R.id.origin_tv);
-        TextView descriptionTv = findViewById(R.id.description_tv);
 
         List<String> list = sandwich.getAlsoKnownAs();
         if (list.isEmpty()) {
